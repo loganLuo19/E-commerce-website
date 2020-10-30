@@ -187,21 +187,21 @@ export default {
             if (!vm.isNew) {
                 api = `${process.env.APIPATH}api/${process.env.CUSTOMPATH}/admin/product/${vm.tempProduct.id}`;
                 httpMethod = 'put';
-            } else
-                this.$http[httpMethod](api, {
-                    data: vm.tempProduct
-                }).then((response) => {
-                    // console.log(response.data);
-                    if (response.data.success) {
-                        $('#productModal').modal('hide');
-                        console.log(response.data.message)
-                        vm.getProducts();
-                    } else {
-                        $('#productModal').modal('hide');
-                        vm.getProducts();
-                        console.log('新增失敗!')
-                    }
-                })
+            }
+            this.$http[httpMethod](api, {
+                data: vm.tempProduct
+            }).then((response) => {
+                // console.log(response.data);
+                if (response.data.success) {
+                    $('#productModal').modal('hide');
+                    console.log(response.data.message)
+                    vm.getProducts();
+                } else {
+                    $('#productModal').modal('hide');
+                    vm.getProducts();
+                    console.log('新增失敗!')
+                }
+            })
         },
         removeProduct() {
             const vm = this;

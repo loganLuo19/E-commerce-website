@@ -33,9 +33,13 @@ export default {
             const api = `${process.env.APIPATH}admin/signin`;
             const vm = this;
             this.$http.post(api, vm.user).then((response) => {
-                console.log(response.data);
+                console.log(response.data.message);
                 if (response.data.success) {
-                    vm.$router.push('/')
+                    const token = response.data.token;
+                    const expired = response.data.expired;
+                    // console.log(token, expired);
+                    document.cookie = `hexToken=${token};expires=${new Date(expired)};`;
+                    vm.$router.push('/admin/products')
                 }
             })
         }

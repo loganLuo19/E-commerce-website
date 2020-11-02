@@ -1,5 +1,6 @@
 <template>
 <div>
+    <loading :active.sync="isLoading"></loading>
     <div class="text-right mt-4">
         <button class="btn btn-primary" @click="openModal(true)">
             建立新產品</button>
@@ -57,9 +58,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="customFile">或 上傳圖片
-                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <i class="fas fa-spinner fa-spin" v-if="status.fileUploading"></i>
                                 </label>
-                                <input type="file" id="customFile" class="form-control" ref="files">
+                                <input type="file" id="customFile" class="form-control" ref="files" @change="uploadFile">
                             </div>
                             <img img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80" class="img-fluid" :src="tempProduct.imageUrl" alt="">
                         </div>
@@ -150,14 +151,20 @@ export default {
             products: [],
             tempProduct: {}, //新增、修改、刪除產品所送出的欄位內容
             isNew: true, //判斷是"新增"還是"修改"產品
-            delProduct: false //判斷是是否"刪除"產品
+            delProduct: false, //判斷是是否"刪除"產品
+            isLoading: false, //網頁loading效果
+            status: {
+                fileUploading: false //上傳資料loadig效果
+            }
         }
     },
     methods: {
         getProducts() {
             const api = `${process.env.APIPATH}api/${process.env.CUSTOMPATH}/admin/products/all`;
             const vm = this;
+            vm.isLoading = true;
             this.$http.get(api).then((response) => {
+                vm.isLoading = false;
                 console.log(response.data);
                 vm.products = response.data.products
             })
@@ -217,10 +224,34 @@ export default {
                     console.log(response.data.message)
                 }
             })
-        }
+        },
+        uploadFile() {
+            const vm = this;
+            const uploadedFile = vm.$refs.files.files[0];
+            const formData = new FormData();
+            formData.append('file-to-upload', uploadedFile);
+            const url = `${process.env.APIPATH}api/${process.env.CUSTOMPATH}/admin/upload`;
+            vm.status.fileUploading = true;
+            vm.$http.post(url, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then((response) => {
+                // console.log(response.data);
+                vm.status.fileUploading = false;
+                if (response.data.success) {
+                    // vm.tempProduct.imageUrl = response.data.imageUrl;
+                    vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl);
+                    // console.log(vm.tempProduct);
+                } else {
+                    vm.$bus.$emit('message:push', response.data.message, 'danger');
+                }
+            });
+        },
     },
     created() {
-        this.getProducts()
+        this.getProducts();
+
     }
 }
 </script>

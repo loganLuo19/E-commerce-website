@@ -36,6 +36,8 @@
             </tr>
         </tbody>
     </table>
+    <!--Pagination-->
+    <Pagination :pages="pagination" @emit-page="getProducts"></Pagination>
     <!-- Modal -->
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -144,11 +146,13 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import $ from 'jquery';
+import Pagination from '../Pagination';
 export default {
     data() {
         return {
             products: [],
+            pagination: {}, //分頁設定
             tempProduct: {}, //新增、修改、刪除產品所送出的欄位內容
             isNew: true, //判斷是"新增"還是"修改"產品
             delProduct: false, //判斷是是否"刪除"產品
@@ -158,15 +162,19 @@ export default {
             }
         }
     },
+    components: {
+        Pagination
+    },
     methods: {
-        getProducts() {
-            const api = `${process.env.APIPATH}api/${process.env.CUSTOMPATH}/admin/products/all`;
+        getProducts(page = 1) {
+            const api = `${process.env.APIPATH}api/${process.env.CUSTOMPATH}/admin/products?page=${page}`;
             const vm = this;
             vm.isLoading = true;
             this.$http.get(api).then((response) => {
                 vm.isLoading = false;
                 console.log(response.data);
-                vm.products = response.data.products
+                vm.products = response.data.products;
+                vm.pagination = response.data.pagination;
             })
         },
         openModal(isNew, delProduct, item) {

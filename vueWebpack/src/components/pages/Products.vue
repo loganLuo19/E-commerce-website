@@ -20,8 +20,8 @@
             <tr v-for="item in products" :key="item.id">
                 <td>{{item.category}}</td>
                 <td>{{item.title}}</td>
-                <td class="text-right">{{item.origin_price}}</td>
-                <td class="text-right">{{item.price}}</td>
+                <td class="text-right">{{item.origin_price | currency}}</td>
+                <td class="text-right">{{item.price | currency}}</td>
                 <td>
                     <span v-if="item.is_enabled" class="text-success">啟用</span>
                     <span v-else>未啟用</span>
@@ -151,7 +151,7 @@ import Pagination from '../Pagination';
 export default {
     data() {
         return {
-            products: [],
+            products: [], //存取產品資料
             pagination: {}, //分頁設定
             tempProduct: {}, //新增、修改、刪除產品所送出的欄位內容
             isNew: true, //判斷是"新增"還是"修改"產品

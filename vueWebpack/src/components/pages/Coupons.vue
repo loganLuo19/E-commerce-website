@@ -118,7 +118,7 @@ export default {
     },
     methods: {
         getCoupon(page = 1) {
-            const api = `${process.env.APIPATH}api/${process.env.CUSTOMPATH}/admin/coupons?page=${page}`; //之後要加page!!!!!
+            const api = `${process.env.APIPATH}api/${process.env.CUSTOMPATH}/admin/coupons?page=${page}`;
             const vm = this;
             vm.isLoading = true;
             this.$http.get(api).then((response) => {

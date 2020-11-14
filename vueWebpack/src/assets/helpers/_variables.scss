@@ -33,7 +33,7 @@ $grays: map-merge(
   $grays
 );
 
-$blue:    #007bff !default;
+$blue:    #0c5460 !default;//#007bff 
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
 $pink:    #e83e8c !default;
@@ -78,12 +78,13 @@ $theme-colors: map-merge(
   (
     "primary":    $primary,
     "secondary":  $secondary,
-    "success":    $success,
+    "success":    #ffe180,//$success,
     "info":       $info,
     "warning":    $warning,
-    "danger":     $danger,
+    "danger":     #e26741,//$danger,
     "light":      $light,
-    "dark":       $dark
+    "dark":       $dark,
+    "soft":       #e9f9ff,
   ),
   $theme-colors
 );
@@ -137,12 +138,22 @@ $spacer: 1rem !default;
 $spacers: () !default;
 $spacers: map-merge(
   (
+    // 0: 0,
+    // 1: ($spacer * .25),
+    // 2: ($spacer * .5),
+    // 3: $spacer,
+    // 4: ($spacer * 1.5),
+    // 5: ($spacer * 3),
     0: 0,
-    1: ($spacer * .25),
-    2: ($spacer * .5),
-    3: $spacer,
-    4: ($spacer * 1.5),
-    5: ($spacer * 3)
+    1: 5px,
+    2: 10px,
+    3: 15px,
+    4: 20px,
+    5: 30px,
+    6: 60px,
+    7: 70px,
+    8: 80px,
+    9: 105px
   ),
   $spacers
 );
@@ -234,7 +245,7 @@ $grid-row-columns:            6 !default;
 $line-height-lg:              1.5 !default;
 $line-height-sm:              1.5 !default;
 
-$border-width:                1px !default;
+$border-width:                2px;//1px !default;
 $border-color:                $gray-300 !default;
 
 $border-radius:               .25rem !default;
@@ -305,10 +316,10 @@ $headings-font-weight:        500 !default;
 $headings-line-height:        1.2 !default;
 $headings-color:              null !default;
 
-$display1-size:               6rem !default;
-$display2-size:               5.5rem !default;
-$display3-size:               4.5rem !default;
-$display4-size:               3.5rem !default;
+$display1-size:               85px;//6rem !default;
+$display2-size:               70px;//5.5rem !default;
+$display3-size:               55px;//4.5rem !default;
+$display4-size:               40px; //3.5rem !default;
 
 $display1-weight:             300 !default;
 $display2-weight:             300 !default;
@@ -363,7 +374,6 @@ $table-border-color:          $border-color !default;
 
 $table-head-bg:               $gray-200 !default;
 $table-head-color:            $gray-700 !default;
-$table-th-font-weight:        null !default;
 
 $table-dark-color:            $white !default;
 $table-dark-bg:               $gray-800 !default;
@@ -682,7 +692,7 @@ $form-validation-states: map-merge(
 // Warning: Avoid customizing these values. They're used for a bird's eye view
 // of components dependent on the z-axis and are designed to all work together.
 
-$zindex-dropdown:                   1000 !default;
+$zindex-dropdown:                   1030;//1000 !default;
 $zindex-sticky:                     1020 !default;
 $zindex-fixed:                      1030 !default;
 $zindex-modal-backdrop:             1040 !default;
@@ -718,7 +728,7 @@ $nav-divider-margin-y:              $spacer / 2 !default;
 $navbar-padding-y:                  $spacer / 2 !default;
 $navbar-padding-x:                  $spacer !default;
 
-$navbar-nav-link-padding-x:         .5rem !default;
+$navbar-nav-link-padding-x:         30px;//.5rem !default;
 
 $navbar-brand-font-size:            $font-size-lg !default;
 // Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
@@ -756,7 +766,6 @@ $navbar-dark-brand-hover-color:           $navbar-dark-active-color !default;
 // Dropdown menu container and contents.
 
 $dropdown-min-width:                10rem !default;
-$dropdown-padding-x:                0 !default;
 $dropdown-padding-y:                .5rem !default;
 $dropdown-spacer:                   .125rem !default;
 $dropdown-font-size:                $font-size-base !default;
@@ -799,22 +808,22 @@ $pagination-line-height:            1.25 !default;
 $pagination-color:                  $link-color !default;
 $pagination-bg:                     $white !default;
 $pagination-border-width:           $border-width !default;
-$pagination-border-color:           $gray-300 !default;
+$pagination-border-color:           $blue;//$gray-300 !default;
 
 $pagination-focus-box-shadow:       $input-btn-focus-box-shadow !default;
 $pagination-focus-outline:          0 !default;
 
 $pagination-hover-color:            $link-hover-color !default;
-$pagination-hover-bg:               $gray-200 !default;
-$pagination-hover-border-color:     $gray-300 !default;
+$pagination-hover-bg:               #e9f9ff;//$gray-200 !default;
+$pagination-hover-border-color:     $blue;//$gray-300 !default;
 
 $pagination-active-color:           $component-active-color !default;
 $pagination-active-bg:              $component-active-bg !default;
 $pagination-active-border-color:    $pagination-active-bg !default;
 
 $pagination-disabled-color:         $gray-600 !default;
-$pagination-disabled-bg:            $white !default;
-$pagination-disabled-border-color:  $gray-300 !default;
+$pagination-disabled-bg:            #e9f9ff;//$white !default;
+$pagination-disabled-border-color:  #e9f9ff;//$gray-300 !default;
 
 
 // Jumbotron

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Home from '@/components/pages/Home';
 import Dashborad from '@/components/Dashborad';
 import Login from '@/components/pages/Login';
 import Products from '@/components/pages/Products';
@@ -11,10 +12,16 @@ import CustomerCheckout from '@/components/pages/CustomerCheckout';
 
 Vue.use(Router);
 export default new Router({
+  linkActiveClass:'active',
   routes: [
     {
       path: '*',
       redirect: '/login'
+    },
+    {
+      path: '/st.19_shop',
+      name: 'Home',
+      component: Home
     },
     {
       path: '/login',

@@ -1,0 +1,181 @@
+<template>
+<div>
+    <Navbar></Navbar>
+    <!-- header -->
+    <header class="container">
+        <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end" style="background-image:url(https://images.unsplash.com/photo-1531668720450-39cf1563fab9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=926&q=80);">
+        </div>
+        <h1 class="text-hide">ST.19商場</h1>
+        <div class="row justify-content-center character-section">
+            <div class="col-md-10">
+                <div class="row no-gutters">
+                    <a href="#todayFeature" id="scroll" class="col-4 text-center character-wrap active" @click.prevent="scrollFeature">
+                        <span class="text-vertical h3 font-weight-bold text-soft scrollTop">本日精選</span>
+                        <div class="character-cover"></div>
+                        <div class="character-image bg-cover" style="background-image: url(https://images.unsplash.com/photo-1557224230-e8b6f8fac15f?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80);">
+                        </div>
+                    </a>
+                    <a href="product-page.html" class="col-4 text-center character-wrap border-0">
+                        <span class="text-vertical h3 font-weight-bold text-soft">新品上市</span>
+                        <div class="character-cover"></div>
+                        <div class="character-image bg-cover" style="background-image: url(https://images.unsplash.com/photo-1576161954389-69cb769e0eee?ixlib=rb-1.2.1&auto=format&fit=crop&w=676&q=80);">
+                        </div>
+                    </a>
+                    <a href="product-info.html" class="col-4 text-center character-wrap">
+                        <span class="text-vertical h3 font-weight-bold text-soft">人氣商品</span>
+                        <div class="character-cover"></div>
+                        <div class="character-image bg-cover" style="background-image: url(https://images.unsplash.com/photo-1592990379276-f15152f278e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1900&q=80);">
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- main -->
+    <section class="my-md-9">
+        <div class="container">
+            <div class="row my-5 d-md-none">
+                <h4 class="col-12 display-4 text-title">佈置房間/</h4>
+                <h4 class="col-12 display-4 text-title text-right">/與我何干?</h4>
+            </div>
+        </div>
+        <div class="bg-soft mb-md-9">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="section-img h-100 bg-cover" style="background-image: url(https://images.unsplash.com/photo-1594565280387-5a309836542a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60);">
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-md-flex text-primary justify-content-end">
+                        <div class="section-content text-md-vertical p-4 py-md-6 ">
+                            <p class="text-justify ">一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，滾滾長江東逝水，白髮漁樵江渚上，古今多少事，都付笑談中。</p>
+                            <p class="text-justify">一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，古今多少事，都付笑談中。</p>
+                        </div>
+                        <h4 class="section-title display-4 mx-1 text-title d-none d-md-block text-vertical ">佈置房間/ /與我何干
+                        </h4>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row my-5 d-md-none">
+                <h4 class="col-12 display-4 text-title">小資族的/</h4>
+                <h4 class="col-12 display-4 text-title text-right">/裝潢術</h4>
+            </div>
+        </div>
+        <div class="bg-soft mb-md-9">
+            <div class="container">
+                <div class="row flex-row-reverse">
+                    <div class="col-md-6">
+                        <div class="section-img h-100 bg-cover" style="background-image: url(https://images.unsplash.com/photo-1528557242643-e981f34a4058?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=646&q=80);">
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-md-flex text-primary justify-content-center">
+                        <div class="section-content text-md-vertical p-4 py-md-6 ">
+                            <p class="text-justify ">一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，滾滾長江東逝水，白髮漁樵江渚上，古今多少事，都付笑談中。</p>
+                            <p class="text-justify">一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，古今多少事，都付笑談中。</p>
+                        </div>
+                        <h4 class="section-title display-4 mx-1 text-title d-none d-md-block text-vertical ">小資族的/ /裝潢術
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="todayFeature">
+            <div class="row flex-wrap justify-content-center my-5">
+                <h4 class="col-md-8 display-4 text-title">輕鬆擁有/</h4>
+                <h4 class="col-md-8 display-4 text-title text-right">/放空空間</h4>
+            </div>
+        </div>
+        <div class="container">
+            <div class="form-row">
+                <div class="col-md-4 col-sm-6 my-3">
+                    <div class="card h-100  border-0 box-shadow">
+                        <img src="https://images.unsplash.com/photo-1595162244081-72420b24fe6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60" class="card-img-top todayFeature-img" alt="...">
+                        <div class="todayFeature-tag">
+                            本日精選
+                        </div>
+                        <a class="likeBtn text-soft text-center" @click.prevent="setLike">
+                            <i class="likeBtnAction fas fa-heart d-none"></i>
+                            <i class="far fa-heart d-inline-block"></i>
+                        </a>
+                        <div class="row no-gutters border border-soft text-center text-primary">
+                            <div class="col-6 border-right border-soft p-2 h5 m-0">波斯氣質花瓶</div>
+                            <div class="col-6 p-2 h5 font-weight-bold m-0">$NT 3999</div>
+                        </div>
+
+                        <a href="#" class="btn btn-lg btn-block btn-soft rounded-0 text-primary">
+                            加入購物車
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 my-3">
+                    <div class="card h-100  border-0 box-shadow">
+                        <img src="https://images.unsplash.com/photo-1557224230-e8b6f8fac15f?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" class="card-img-top todayFeature-img" alt="...">
+                        <div class="todayFeature-tag">
+                            本日精選
+                        </div>
+                        <a class="likeBtn text-soft text-center">
+                            <i class="likeBtnAction fas fa-heart d-none"></i>
+                            <i class="far fa-heart d-inline-block"></i>
+                        </a>
+                        <div class="row no-gutters border border-soft text-center text-primary">
+                            <div class="col-6 border-right border-soft p-2 h5 m-0">歐式微香蠟燭</div>
+                            <div class="col-6 p-2 h5 font-weight-bold m-0">$NT 3999</div>
+                        </div>
+                        <a href="#" class="btn btn-lg btn-block btn-soft rounded-0 text-primary">
+                            加入購物車
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 my-3">
+                    <div class="card h-100  border-0 box-shadow">
+                        <img src="https://images.unsplash.com/photo-1587717415723-8c89fe42c76c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60" class="card-img-top todayFeature-img" alt="...">
+                        <div class="todayFeature-tag">
+                            本日精選
+                        </div>
+                        <a class="likeBtn text-soft">
+                            <i class="likeBtnAction fas fa-heart d-none"></i>
+                            <i class="far fa-heart d-inline-block"></i>
+                        </a>
+                        <div class="row no-gutters border border-soft text-center text-primary">
+                            <div class="col-6 border-right border-soft p-2 h5 m-0">霧黑梯形層架</div>
+                            <div class="col-6 p-2 h5 font-weight-bold m-0">$NT 3999</div>
+                        </div>
+                        <a href="#" class="btn btn-lg btn-block btn-soft rounded-0 text-primary">
+                            加入購物車
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <Footer></Footer>
+</div>
+</template>
+
+<script>
+import $ from 'jquery';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
+export default {
+    components: {
+        Navbar,
+        Footer
+    },
+    methods: {
+        scrollFeature() {
+            const target = $('#scroll').attr('href');
+            const targetPos = $(target).offset().top;
+            $('html, body').animate({
+                scrollTop: targetPos
+            }, 1000);
+        },
+        setLike() {
+            $('.likeBtn').find('.likeBtnAction').toggleClass('d-inline-block');
+        }
+    }
+}
+</script>

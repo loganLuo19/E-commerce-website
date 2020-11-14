@@ -30,27 +30,32 @@
             </tr>
         </tbody>
     </table>
+    <!--Pagination-->
+    <Pagination :pages="pagination" @emit-page="getOrders"></Pagination>
 </div>
 </template>
 
 <script>
 import $ from 'jquery';
+import Pagination from '../Pagination';
 export default {
     data() {
         return {
             orders: [], //存取訂單資料
             isLoading: false, //網頁loading效果
+            pagination: {}
         }
     },
     methods: {
-        getOrders() {
-            const api = `${process.env.APIPATH}api/${process.env.CUSTOMPATH}/admin/orders?page=1`;
+        getOrders(page = 1) {
+            const api = `${process.env.APIPATH}api/${process.env.CUSTOMPATH}/admin/orders?page=${page}`;
             const vm = this;
             vm.isLoading = true;
             vm.$http.get(api).then((response) => {
                 vm.isLoading = false;
                 console.log(response.data);
                 vm.orders = response.data.orders;
+                vm.pagination = response.data.pagination;
                 vm.orders.forEach((item) => {
                     if (item.paid_date) {
                         const dates = new Date(item.paid_date * 1000);
@@ -65,6 +70,9 @@ export default {
 
             })
         }
+    },
+    components: {
+        Pagination
     },
     created() {
         this.getOrders();

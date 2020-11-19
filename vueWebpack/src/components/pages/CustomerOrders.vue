@@ -82,27 +82,6 @@
     <div class="my-5 row justify-content-center">
         <validation-observer class="col-md-6" v-slot="{ invalid }">
             <form @submit.prevent="createOrder">
-                <!--<div class="form-group">
-                <label for="useremail">Email</label>
-                <input type="email" class="form-control" name="email" id="useremail" v-validate="'required|email'" :class="{'is-invalid':errors.has('email')}" v-model="form.user.email" >
-                <span class="text-danger" v-if="errors.has('email')">{{ errors.first('email') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="username">收件人姓名</label>
-                <input type="text" class="form-control" name="name" id="username" v-model="form.user.name" placeholder="輸入姓名" v-validate="'required'" :class="{'is-invalid':errors.has('name')}">
-                <span class="text-danger" v-if="errors.has('name')">姓名欄位不得留空</span>
-            </div>
-            <div class="form-group">
-                <label for="usertel">收件人電話</label>
-                <input type="tel" class="form-control" id="usertel" name="phone" v-validate="'required'" :class="{'is-invalid':errors.has('phone')}" v-model="form.user.tel" placeholder="請輸入電話">
-                <span class="text-danger" v-if="errors.has('phone')">電話不得留空</span>
-            </div>
-            <div class="form-group">
-                <label for="useraddress">收件人地址</label>
-                <input type="text" class="form-control" name="address" id="useraddress" v-model="form.user.address" v-validate="'required'" :class="{'is-invalid':errors.has('address')}" placeholder="請輸入地址">
-                <span class="text-danger" v-if="errors.has('address')">地址欄位不得留空</span>
-            </div>
-            -->
                 <validation-provider rules="required|email" v-slot="{ errors, classes }">
                     <div class="form-group">
                         <!-- 輸入框 -->
@@ -179,24 +158,6 @@
                         小計 <strong>{{product.num * product.price}}</strong> 元
                     </div>
                     <button type="button" class="btn btn-primary" @click="addToCart(product.id, product.num)">加到購物車</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="delProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content border-0">
-                <div class="modal-header bg-danger text-white">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <span>刪除產品</span>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-danger">確認刪除</button>
                 </div>
             </div>
         </div>

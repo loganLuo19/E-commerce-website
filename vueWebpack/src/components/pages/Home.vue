@@ -1,6 +1,5 @@
 <template>
 <div>
-    <Navbar></Navbar>
     <!-- header -->
     <header class="container">
         <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end" style="background-image:url(https://images.unsplash.com/photo-1531668720450-39cf1563fab9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=926&q=80);">
@@ -49,8 +48,8 @@
                     </div>
                     <div class="col-md-6 d-md-flex text-primary justify-content-end">
                         <div class="section-content text-md-vertical p-4 py-md-6 ">
-                            <p class="text-justify ">一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，滾滾長江東逝水，白髮漁樵江渚上，古今多少事，都付笑談中。</p>
-                            <p class="text-justify">一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，古今多少事，都付笑談中。</p>
+                            <p class="text-justify ">家裡的狀態能直接反映你的內心。當你心煩意亂時，家裡一定會雜亂無章。試想下班的時候，家裡本該是你好好放鬆的地方。</p>
+                            <p class="text-justify">一進門，迎接你的卻是這麼糟糕的環境。這樣的惡性循環必定會影響身心靈健康。好好整理房間，並做些佈置。換一個健康的環境生活吧。</p>
                         </div>
                         <h4 class="section-title display-4 mx-1 text-title d-none d-md-block text-vertical ">佈置房間/ /與我何干
                         </h4>
@@ -74,8 +73,8 @@
                     </div>
                     <div class="col-md-6 d-md-flex text-primary justify-content-center">
                         <div class="section-content text-md-vertical p-4 py-md-6 ">
-                            <p class="text-justify ">一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，滾滾長江東逝水，白髮漁樵江渚上，古今多少事，都付笑談中。</p>
-                            <p class="text-justify">一壺濁酒喜相逢，浪花淘盡英雄。是非成敗轉頭空，古今多少事，都付笑談中。</p>
+                            <p class="text-justify ">誰說佈置一定要砸大錢？只要掌握幾個重點，你要可以自己營造美麗的空間。</p>
+                            <p class="text-justify">首先，先為你的空間訂一個主題。像是北歐簡約風、文青森林系或是個性工業風。接下來...</p>
                         </div>
                         <h4 class="section-title display-4 mx-1 text-title d-none d-md-block text-vertical ">小資族的/ /裝潢術
                         </h4>
@@ -152,19 +151,12 @@
             </div>
         </div>
     </section>
-    <Footer></Footer>
 </div>
 </template>
 
 <script>
 import $ from 'jquery';
-import Navbar from '../Navbar';
-import Footer from '../Footer';
 export default {
-    components: {
-        Navbar,
-        Footer
-    },
     methods: {
         scrollFeature() {
             const target = $('#scroll').attr('href');

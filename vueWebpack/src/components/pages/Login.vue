@@ -1,19 +1,5 @@
 <template>
 <div>
-    <!--<form class="form-signin" @submit.prevent="singin">
-        <h1 class="h3 mb-3 font-weight-normal">登入頁面</h1>
-        <label for="inputEmail" class="sr-only">帳戶名稱</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" v-model="user.username" required autofocus>
-        <label for="inputPassword" class="sr-only">密碼</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" v-model="user.password" required>
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
-    </form>-->
     <Navbar></Navbar>
     <Alert></Alert>
     <!-- main -->

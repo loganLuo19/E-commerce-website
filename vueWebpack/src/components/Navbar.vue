@@ -12,7 +12,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto font-weight-bold">
                     <router-link class="nav-link" to="/st.19_shop">首頁 <span class="sr-only">(current)</span></router-link>
-                    <a class="nav-link" href="product-page.html">商品目錄</a>
+                    <router-link class="nav-link" to="/product_page">商品目錄</router-link>
                     <router-link class="nav-link" to="/login" v-if="!status">登入</router-link>
                     <a class="nav-link" href="#" @click.prevent="signout" v-else>登出</a>
                 </div>
@@ -22,26 +22,26 @@
                 <button class="btn btn-sm btn-cart" data-toggle="dropdown" data-flip="false">
                     <i class="fas fa-shopping-cart text-primary fa-2x d-none d-sm-inline-block"></i>
                     <i class="fas fa-shopping-cart text-primary d-sm-none"></i>
-                    <span class="badge badge-pill badge-danger">2</span>
+                    <span class="badge badge-pill badge-danger">{{itemInCart.carts.length}}</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" style="min-width:300px">
                     <div class="px-4 py-3">
                         <h6>已選擇商品</h6>
-                        <table class="table table-sm">
+                        <table class="table table-sm table-hover">
                             <tbody>
-                                <tr>
+                                <tr v-for="item in itemInCart.carts" :key="item.id">
                                     <td class="align-middle text-center">
-                                        <a href="#removeModal" class="text-muted d-block btn-icon" data-toggle="modal">
+                                        <button class="btn text-danger d-block btn-icon" @click="removeModal(item)">
                                             <i class="far fa-trash-alt"></i>
-                                        </a>
+                                        </button>
                                     </td>
-                                    <td class="align-middle">北歐城市掛畫</td>
-                                    <td class="align-middle">2</td>
-                                    <td class="align-middle text-right">$890</td>
+                                    <td class="align-middle">{{item.product.title}}</td>
+                                    <td class="align-middle">{{item.qty}}</td>
+                                    <td class="align-middle text-right">{{item.total | currency}}</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <a href="shoppingCart.html" class="btn btn-primary btn-block btn-sm">查看購物車</a>
+                        <router-link to="/shopping_cart" class="btn btn-info btn-block btn-sm">查看購物車</router-link>
                     </div>
                 </div>
             </div>
@@ -59,11 +59,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    是否確認刪除訂單?
+                    是否刪除 <strong class="text-danger">{{ tempCartItem.product.title }}</strong> 訂單(刪除後將無法恢復)。
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-outline-danger">確定</button>
+                    <button type="button" class="btn btn-outline-danger" @click="removeCartItem(tempCartItem.id)">確定</button>
                 </div>
             </div>
         </div>
@@ -72,10 +72,17 @@
 </template>
 
 <script>
+import $ from 'jquery'
 export default {
     data() {
         return {
-            status: false
+            status: false,
+            tempCartItem: {
+                product: ''
+            }, //刪除單筆訂單
+            itemInCart: {
+                carts: {}
+            }, //存取購物車項目
         }
     },
     methods: {
@@ -90,21 +97,55 @@ export default {
             })
         },
         loginCheck() {
-            console.log('look')
             const vm = this;
             const api = `${process.env.APIPATH}api/user/check`;
             vm.$http.post(api).then((response) => {
-                console.log(response.data)
+                // console.log(response.data)
                 if (response.data.success) {
                     vm.status = true;
                 } else {
                     vm.status = false;
                 }
             })
+        },
+        getCart() {
+            const api = `${process.env.APIPATH}api/${process.env.CUSTOMPATH}/cart`;
+            const vm = this;
+            vm.isLoading = true;
+            this.$http.get(api).then((response) => {
+                // console.log(response.data);
+                vm.itemInCart = response.data.data;
+                vm.isLoading = false;
+            })
+        },
+        removeModal(item) {
+            this.tempCartItem = item;
+            $('#removeModal').modal('show');
+        },
+        removeCartItem(id) {
+            const api = `${process.env.APIPATH}api/${process.env.CUSTOMPATH}/cart/${id}`;
+            const vm = this;
+            this.$http.delete(api).then((response) => {
+                if(response.data.success) {
+                     $('#removeModal').modal('hide');
+                    vm.getCart();
+                    // console.log(response.data.message)
+                }else {
+                    $('#removeModal').modal('hide');
+                    vm.getCart();
+                    // console.log(response.data.message)
+                }
+            })
+        },
+    },
+    watch: {
+        itemInCart: function() {
+            this.getCart()
         }
     },
     created() {
-        this.loginCheck()
+        this.loginCheck(),
+        this.getCart()
     }
 }
 </script>

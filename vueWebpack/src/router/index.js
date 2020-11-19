@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Index from '@/components/Index';
 import Home from '@/components/pages/Home';
+import ProductPage from '@/components/pages/ProductPage';
+import ShoppingCart from '@/components/pages/ShoppingCart';
 import Dashborad from '@/components/Dashborad';
 import Login from '@/components/pages/Login';
 import Products from '@/components/pages/Products';
@@ -19,14 +22,41 @@ export default new Router({
       redirect: '/login'
     },
     {
-      path: '/st.19_shop',
-      name: 'Home',
-      component: Home
-    },
-    {
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/',
+      name: 'Index',
+      component: Index,
+      children:[
+        {
+          path: 'customer_orders',
+          name: 'CustomerOrders',
+          component: CustomerOrders,
+        },
+        {
+          path: 'customer_checkout/:orderId',
+          name: 'CustomerCheckout',
+          component: CustomerCheckout,
+        },
+        {
+          path: 'st.19_shop',
+          name: 'Home',
+          component: Home
+        },
+        {
+          path: 'product_page',
+          name: 'ProductPage',
+          component: ProductPage
+        },
+        {
+          path: 'shopping_cart',
+          name: 'ShoppingCart',
+          component: ShoppingCart
+        },
+      ]
     },
     {
       path: '/admin',
@@ -52,23 +82,6 @@ export default new Router({
           meta: { requiresAuth: true },
         }
       ]
-    },
-    {
-      path: '/',
-      name: 'Dashborad',
-      component: Dashborad,
-      children:[
-        {
-          path: 'customer_orders',
-          name: 'CustomerOrders',
-          component: CustomerOrders,
-        },
-        {
-          path: 'customer_checkout/:orderId',
-          name: 'CustomerCheckout',
-          component: CustomerCheckout,
-        },
-      ]
-    },
+    }
   ]
 })

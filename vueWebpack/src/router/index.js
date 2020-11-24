@@ -1,21 +1,30 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+//客戶端頁面
+import Login from '@/components/pages/Login';
 import Index from '@/components/Index';
 import Home from '@/components/pages/Home';
 import ProductPage from '@/components/pages/ProductPage';
 import ShoppingCart from '@/components/pages/ShoppingCart';
+import Checkout from '@/components/Checkout';
+import Orderer from '@/components/pages/Orderer';
+import Payment from '@/components/pages/Payment';
+import Invoice from '@/components/pages/Invoice';OrderCompleted
+import CustomerCheckout from '@/components/pages/CustomerCheckout';
+import OrderCompleted from '@/components/pages/OrderCompleted';
+
+//管理者頁面
 import Dashborad from '@/components/Dashborad';
-import Login from '@/components/pages/Login';
 import Products from '@/components/pages/Products';
 import Orders from '@/components/pages/Orders';
 import Coupon from '@/components/pages/Coupons';
 import CustomerOrders from '@/components/pages/CustomerOrders';
-import CustomerCheckout from '@/components/pages/CustomerCheckout';
+
 
 
 Vue.use(Router);
 export default new Router({
-  linkActiveClass:'active',
+  linkActiveClass: 'active',
   routes: [
     {
       path: '*',
@@ -30,7 +39,7 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: Index,
-      children:[
+      children: [
         {
           path: 'customer_orders',
           name: 'CustomerOrders',
@@ -56,13 +65,40 @@ export default new Router({
           name: 'ShoppingCart',
           component: ShoppingCart
         },
+        {
+          path: 'order_completed',
+          name: 'OrderCompleted',
+          component: OrderCompleted
+        },
+      ]
+    },
+    {
+      path: '/checkout',
+      name: 'Checkout',
+      component: Checkout,
+      children: [
+        {
+          path: 'orderer',
+          name: 'Orderer',
+          component: Orderer
+        },
+        {
+          path: 'payment/:orderId',
+          name: 'Payment',
+          component: Payment
+        },
+        {
+          path: 'invoice/:orderId',
+          name: 'Invoice',
+          component: Invoice
+        }
       ]
     },
     {
       path: '/admin',
       name: 'Dashborad',
       component: Dashborad,
-      children:[
+      children: [
         {
           path: 'products',
           name: 'Products',

@@ -13,6 +13,7 @@
                 <div class="navbar-nav ml-auto font-weight-bold">
                     <router-link class="nav-link" to="/st.19_shop">首頁 <span class="sr-only">(current)</span></router-link>
                     <router-link class="nav-link" to="/product_page">商品目錄</router-link>
+                    <router-link class="nav-link" to="/admin/products" v-if="status">管理頁面</router-link>
                     <router-link class="nav-link" to="/login" v-if="!status">登入</router-link>
                     <a class="nav-link" href="#" @click.prevent="signout" v-else>登出</a>
                 </div>

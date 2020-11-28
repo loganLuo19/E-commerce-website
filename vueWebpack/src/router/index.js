@@ -5,11 +5,12 @@ import Login from '@/components/pages/Login';
 import Index from '@/components/Index';
 import Home from '@/components/pages/Home';
 import ProductPage from '@/components/pages/ProductPage';
+import ProductInfo from '@/components/pages/ProductInfo';
 import ShoppingCart from '@/components/pages/ShoppingCart';
 import Checkout from '@/components/Checkout';
 import Orderer from '@/components/pages/Orderer';
 import Payment from '@/components/pages/Payment';
-import Invoice from '@/components/pages/Invoice';OrderCompleted
+import Invoice from '@/components/pages/Invoice';
 import CustomerCheckout from '@/components/pages/CustomerCheckout';
 import OrderCompleted from '@/components/pages/OrderCompleted';
 
@@ -64,6 +65,11 @@ export default new Router({
           path: 'shopping_cart',
           name: 'ShoppingCart',
           component: ShoppingCart
+        },
+        {
+          path: 'product_info',
+          name: 'ProductInfo',
+          component: ProductInfo
         },
         {
           path: 'order_completed',

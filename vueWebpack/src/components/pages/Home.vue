@@ -45,11 +45,11 @@
               ></div>
             </router-link>
             <router-link
-              to="product_info"
+              to="special_offers"
               class="col-4 text-center character-wrap"
             >
               <span class="text-vertical h3 font-weight-bold text-soft"
-                >人氣商品</span
+                >優惠活動</span
               >
               <div class="character-cover"></div>
               <div

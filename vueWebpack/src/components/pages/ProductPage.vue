@@ -43,13 +43,13 @@
             >
               <i class="fab fa-hotjar mr-2"></i>人氣商品
             </router-link>
-            <a
-              href="#"
+            <router-link
+              to="special_offers"
               class="list-group-item list-group-item-action list-group-item-info"
               data-toggle="list"
             >
-              <i class="far fa-lightbulb mr-2"></i>設計靈感 | Blog
-            </a>
+              <i class="far fa-lightbulb mr-2"></i>優惠活動
+            </router-link>
           </div>
         </div>
         <div class="col-md-9">

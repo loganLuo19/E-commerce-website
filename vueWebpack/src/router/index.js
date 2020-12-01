@@ -13,6 +13,8 @@ import Payment from '@/components/pages/Payment';
 import Invoice from '@/components/pages/Invoice';
 import CustomerCheckout from '@/components/pages/CustomerCheckout';
 import OrderCompleted from '@/components/pages/OrderCompleted';
+import SpecialOffers from '@/components/pages/SpecialOffers';
+
 
 //管理者頁面
 import Dashborad from '@/components/Dashborad';
@@ -70,6 +72,11 @@ export default new Router({
           path: 'product_info',
           name: 'ProductInfo',
           component: ProductInfo
+        },
+        {
+          path: 'special_offers',
+          name: 'SpecialOffers',
+          component: SpecialOffers
         },
         {
           path: 'order_completed',

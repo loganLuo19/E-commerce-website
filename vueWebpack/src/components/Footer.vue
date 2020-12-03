@@ -34,6 +34,7 @@
             </div>
         </div>
         <p class="text-center">© Copyright 2020 ST.19商場 <small> Made with Bootstrap4</small></p>
+        <p class="text-center">僅供學習使用，無商業用途</p>
     </footer>
 </div>
 </template>

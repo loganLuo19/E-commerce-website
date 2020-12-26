@@ -42,8 +42,9 @@
     </div>
     <!-- main -->
     <section class="my-5">
-      <!--  -->
+      <!-- category -->
       <div class="container">
+        <h4 class="display-4 text-title mb-3"><i class="fas fa-meteor"></i>新品上市/</h4>
         <div class="row justify-content-center">
           <div class="col-10 bg-soft" style="height: 600px">
             <div class="row h-100">

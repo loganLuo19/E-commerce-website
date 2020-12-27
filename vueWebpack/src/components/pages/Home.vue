@@ -48,13 +48,39 @@
         <div class="row justify-content-center">
           <div class="col-10 bg-soft" style="height: 600px">
             <div class="row h-100">
-              <div class="col-md-5 bg-cover"  style="background-image: url(https://images.unsplash.com/photo-1595162244081-72420b24fe6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60);">
-               
+              <div
+                class="col-md-5 character-wrap"
+                style="
+                  background-image: url(https://images.unsplash.com/photo-1595162244081-72420b24fe6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60);
+                "
+              >
+                <span class="text-vertical h3 font-weight-bold text-soft">新品上市</span>
+                <div class="character-cover"></div>
               </div>
               <div class="col-md-7 bg-primary">
-                <div class="row flex-column h-100">
-                  <div class="col bg-white bg-cover h-50" style="background-image:url(https://images.unsplash.com/photo-1596120263564-fc7ee2d8538d?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHw%3D&auto=format&fit=crop&w=600&q=60)" ></div>
-                  <div class="col bg-secondary bg-cover" style="background-image: url(https://images.unsplash.com/photo-1488320504421-6f0d07388737?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTl8fHNvZmF8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60);"></div>
+                <div class="row flex-md-column h-100">
+                  <div
+                    class="col bg-white bg-cover character-wrap"
+                    style="
+                      background-image: url(https://images.unsplash.com/photo-1596120263564-fc7ee2d8538d?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHw%3D&auto=format&fit=crop&w=600&q=60);
+                    "
+                  >
+                    <span class="text-vertical h3 font-weight-bold text-soft"
+                      >新品上市</span
+                    >
+                    <div class="character-cover"></div>
+                  </div>
+                  <div
+                    class="col bg-secondary bg-cover character-wrap"
+                    style="
+                      background-image: url(https://images.unsplash.com/photo-1488320504421-6f0d07388737?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTl8fHNvZmF8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60);
+                    "
+                  >
+                    <span class="text-vertical h3 font-weight-bold text-soft"
+                      >新品上市</span
+                    >
+                    <div class="character-cover"></div>
+                  </div>
                 </div>
               </div>
             </div>

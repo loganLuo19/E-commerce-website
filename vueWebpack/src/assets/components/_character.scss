@@ -3,7 +3,6 @@
 }
 .character-wrap {
     position: relative;
-    height: 255px;
     overflow: hidden;
     z-index: 2;
     display: flex;
@@ -11,8 +10,10 @@
     justify-content: center;
     text-decoration: none;
     border-right: 1px solid #fff;
+    transition: all 1s;
+    background-size: 100%;
     .character-cover {
-        background-color: rgba(theme-color("primary"), 0.6);
+        background-color: rgba(theme-color("primary"), 0.4);
         transition: background-color 1s;
         position: absolute;
         right: 0;
@@ -36,6 +37,7 @@
     &:focus {
         text-decoration: none;
         color: theme-color("primary");
+        background-size: 110%;
         .character-cover {
             background-color: rgba(theme-color("warning"), 0.6);
         }

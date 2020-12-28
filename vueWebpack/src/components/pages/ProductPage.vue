@@ -33,23 +33,26 @@
               href="#pane-2"
               class="list-group-item list-group-item-action list-group-item-info"
               data-toggle="list"
+              @click.prevent="sortByCategory('家飾')"
             >
-              <i class="fas fa-stopwatch mr-2"></i>限時下殺
+              <i class="fas fa-air-freshener mr-2"></i>居家飾品
             </a>
-            <router-link
-              to="product_info"
+            <a
+              href="#pane-3"
               class="list-group-item list-group-item-action list-group-item-info"
               data-toggle="list"
+              @click.prevent="sortByCategory('家具')"
             >
-              <i class="fab fa-hotjar mr-2"></i>人氣商品
-            </router-link>
-            <router-link
-              to="special_offers"
+              <i class="fas fa-couch mr-1"></i>嚴選家具
+            </a>
+            <a
+              href="#pane-4"
               class="list-group-item list-group-item-action list-group-item-info"
               data-toggle="list"
+              @click.prevent="sortByCategory('小物')"
             >
-              <i class="far fa-lightbulb mr-2"></i>優惠活動
-            </router-link>
+              <i class="fas fa-glass-martini-alt mr-2"></i>生活小物
+            </a>
           </div>
         </div>
         <div class="col-md-9">
@@ -86,14 +89,10 @@
                 >
                   <div class="card h-100 border-0 box-shadow">
                     <div
-                      class="card-img-top"
-                      style="
-                        height: 150px;
-                        background-size: cover;
-                        background-position: center;
-                      "
+                      class="card-img-top card-section-img"
                       :style="{ backgroundImage: `url(${item.imageUrl})` }"
                     ></div>
+
                     <div class="card-body">
                       <span class="badge badge-secondary float-right ml-2">{{
                         item.category
@@ -103,10 +102,7 @@
                           item.title
                         }}</a>
                       </h5>
-                      <p class="card-text">{{ item.description }}</p>
-                      <div
-                        class="d-flex justify-content-between align-items-baseline"
-                      >
+                      <div class="d-flex justify-content-between align-items-baseline">
                         <div class="h5 text-info" v-if="!item.price">
                           原價 {{ item.origin_price | currency }}
                         </div>
@@ -118,110 +114,224 @@
                         </div>
                       </div>
                     </div>
-                    <div class="card-footer d-flex">
+                    <a class="likeBtn text-soft">
+                      <i
+                        class="likeBtnAction fas fa-heart"
+                        v-if="item.switchLikeBtn"
+                        @click="switchLike(item)"
+                      ></i>
+                      <i class="far fa-heart" v-else @click="switchLike(item)"></i>
+                    </a>
+                    <div class="d-flex">
                       <button
-                        type="button"
-                        class="btn btn-outline-primary btn-sm"
-                        @click="getProduct(item.id)"
+                        class="btn btn-block btn-soft rounded-0 text-primary"
+                        @click="toProductInof(item.id)"
                       >
-                        <i
-                          class="fas fa-spinner fa-spin"
-                          v-if="status.loadingInfo === item.id"
-                        ></i>
-                        查看更多
+                        商品資訊
                       </button>
                       <button
                         type="button"
-                        class="btn btn-outline-danger btn-sm ml-auto"
+                        class="btn btn-success rounded-0 text-primary"
                         @click="addToCart(item.id)"
                       >
-                        <i
-                          class="fas fa-spinner fa-spin d-none"
-                          v-if="status.loadingCart === item.id"
-                        ></i>
-                        加到購物車
+                        <i class="fas fa-spinner fa-spin d-none"></i>
+                        <i class="fas fa-cart-plus"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Pagination-->
+              <Pagination :pages="pagination" @emit-page="getProducts"></Pagination>
+            </div>
+
+            <div class="tab-pane" id="pane-2">
+              <div class="row">
+                <div
+                  class="col-lg-4 col-md-6 my-3"
+                  v-for="item in featureProduct"
+                  :key="item.id"
+                >
+                  <div class="card h-100 border-0 box-shadow">
+                    <div
+                      class="card-img-top card-section-img"
+                      :style="{ backgroundImage: `url(${item.imageUrl})` }"
+                    ></div>
+
+                    <div class="card-body">
+                      <span class="badge badge-secondary float-right ml-2">{{
+                        item.category
+                      }}</span>
+                      <h5 class="card-title">
+                        <a href="#" class="text-primary font-weight-bold">{{
+                          item.title
+                        }}</a>
+                      </h5>
+                      <div class="d-flex justify-content-between align-items-baseline">
+                        <div class="h5 text-info" v-if="!item.price">
+                          原價 {{ item.origin_price | currency }}
+                        </div>
+                        <del class="h6 text-secondary" v-if="item.price"
+                          >原價 {{ item.origin_price | currency }}</del
+                        >
+                        <div class="h4 text-right text-info" v-if="item.price">
+                          現在只要 {{ item.price | currency }}
+                        </div>
+                      </div>
+                    </div>
+                    <a class="likeBtn text-soft">
+                      <i
+                        class="likeBtnAction fas fa-heart"
+                        v-if="item.switchLikeBtn"
+                        @click="switchLike(item)"
+                      ></i>
+                      <i class="far fa-heart" v-else @click="switchLike(item)"></i>
+                    </a>
+                    <div class="d-flex">
+                      <button
+                        class="btn btn-block btn-soft rounded-0 text-primary"
+                        @click="toProductInof(item.id)"
+                      >
+                        商品資訊
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-success rounded-0 text-primary"
+                        @click="addToCart(item.id)"
+                      >
+                        <i class="fas fa-spinner fa-spin d-none"></i>
+                        <i class="fas fa-cart-plus"></i>
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="tab-pane" id="pane-2">
-              <OnSale
-                :sale-item="featureProduct"
-                :loading="status"
-                @get-item="getProduct"
-                @add-item="addToCart"
-              ></OnSale>
-            </div>
-          </div>
-          <!--Pagination-->
-          <Pagination :pages="pagination" @emit-page="getProducts"></Pagination>
-        </div>
-      </div>
-    </div>
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="productModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
-              {{ product.title }}
-            </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <img :src="product.imageUrl" class="img-fluid" alt="" />
-            <blockquote class="blockquote mt-3">
-              <p class="mb-0">{{ product.content }}</p>
-              <footer class="blockquote-footer text-right">
-                {{ product.description }}
-              </footer>
-            </blockquote>
-            <div class="d-flex justify-content-between align-items-baseline">
-              <div class="h4" v-if="!product.price">
-                原價 {{ product.origin_price | currency }} 元
+            <div class="tab-pane" id="pane-3">
+              <div class="row">
+                <div
+                  class="col-lg-4 col-md-6 my-3"
+                  v-for="item in featureProduct"
+                  :key="item.id"
+                >
+                  <div class="card h-100 border-0 box-shadow">
+                    <div
+                      class="card-img-top card-section-img"
+                      :style="{ backgroundImage: `url(${item.imageUrl})` }"
+                    ></div>
+
+                    <div class="card-body">
+                      <span class="badge badge-secondary float-right ml-2">{{
+                        item.category
+                      }}</span>
+                      <h5 class="card-title">
+                        <a href="#" class="text-primary font-weight-bold">{{
+                          item.title
+                        }}</a>
+                      </h5>
+                      <div class="d-flex justify-content-between align-items-baseline">
+                        <div class="h5 text-info" v-if="!item.price">
+                          原價 {{ item.origin_price | currency }}
+                        </div>
+                        <del class="h6 text-secondary" v-if="item.price"
+                          >原價 {{ item.origin_price | currency }}</del
+                        >
+                        <div class="h4 text-right text-info" v-if="item.price">
+                          現在只要 {{ item.price | currency }}
+                        </div>
+                      </div>
+                    </div>
+                    <a class="likeBtn text-soft">
+                      <i
+                        class="likeBtnAction fas fa-heart"
+                        v-if="item.switchLikeBtn"
+                        @click="switchLike(item)"
+                      ></i>
+                      <i class="far fa-heart" v-else @click="switchLike(item)"></i>
+                    </a>
+                    <div class="d-flex">
+                      <button
+                        class="btn btn-block btn-soft rounded-0 text-primary"
+                        @click="toProductInof(item.id)"
+                      >
+                        商品資訊
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-success rounded-0 text-primary"
+                        @click="addToCart(item.id)"
+                      >
+                        <i class="fas fa-spinner fa-spin d-none"></i>
+                        <i class="fas fa-cart-plus"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <del class="h6" v-if="product.price"
-                >原價 {{ product.origin_price | currency }} 元</del
-              >
-              <div class="h4" v-if="product.price">
-                現在只要 {{ product.price | currency }} 元
+            </div>
+            <div class="tab-pane" id="pane-4">
+              <div class="row">
+                <div
+                  class="col-lg-4 col-md-6 my-3"
+                  v-for="item in featureProduct"
+                  :key="item.id"
+                >
+                  <div class="card h-100 border-0 box-shadow">
+                    <div
+                      class="card-img-top card-section-img"
+                      :style="{ backgroundImage: `url(${item.imageUrl})` }"
+                    ></div>
+
+                    <div class="card-body">
+                      <span class="badge badge-secondary float-right ml-2">{{
+                        item.category
+                      }}</span>
+                      <h5 class="card-title">
+                        <a href="#" class="text-primary font-weight-bold">{{
+                          item.title
+                        }}</a>
+                      </h5>
+                      <div class="d-flex justify-content-between align-items-baseline">
+                        <div class="h5 text-info" v-if="!item.price">
+                          原價 {{ item.origin_price | currency }}
+                        </div>
+                        <del class="h6 text-secondary" v-if="item.price"
+                          >原價 {{ item.origin_price | currency }}</del
+                        >
+                        <div class="h4 text-right text-info" v-if="item.price">
+                          現在只要 {{ item.price | currency }}
+                        </div>
+                      </div>
+                    </div>
+                    <a class="likeBtn text-soft">
+                      <i
+                        class="likeBtnAction fas fa-heart"
+                        v-if="item.switchLikeBtn"
+                        @click="switchLike(item)"
+                      ></i>
+                      <i class="far fa-heart" v-else @click="switchLike(item)"></i>
+                    </a>
+                    <div class="d-flex">
+                      <button
+                        class="btn btn-block btn-soft rounded-0 text-primary"
+                        @click="toProductInof(item.id)"
+                      >
+                        商品資訊
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-success rounded-0 text-primary"
+                        @click="addToCart(item.id)"
+                      >
+                        <i class="fas fa-spinner fa-spin d-none"></i>
+                        <i class="fas fa-cart-plus"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <select name="" class="form-control mt-3" v-model="product.num">
-              <option :value="num" v-for="num in 10" :key="num">
-                選購 {{ num }} {{ product.unit }}
-              </option>
-            </select>
-          </div>
-          <div class="modal-footer">
-            <div class="text-muted text-nowrap mr-3">
-              小計
-              <strong>{{ (product.num * product.price) | currency }}</strong
-              >元
-            </div>
-            <button
-              type="button"
-              class="btn btn-primary"
-              @click="addToCart(product.id, product.num)"
-            >
-              加到購物車
-            </button>
+            
           </div>
         </div>
       </div>
@@ -233,7 +343,7 @@
 import $ from "jquery";
 import Pagination from "../Pagination";
 import Alert from "../AlertMessage";
-import OnSale from "../OnSaleCard";
+
 export default {
   data() {
     return {
@@ -246,6 +356,7 @@ export default {
         loadingInfo: "",
         loadingCart: "",
       },
+
       featureProduct: [],
       searchItem: "", //存取搜尋文字內容
       result: [], //存取搜尋結果
@@ -262,24 +373,10 @@ export default {
         vm.products = data;
         vm.pagination = response.data.pagination;
         vm.isLoading = false;
-        data.forEach((item) => {
-          if (item.origin_price < 1000) {
-            vm.featureProduct.push(item);
-          }
-        });
       });
     },
-    getProduct(id) {
-      const api = `${process.env.APIPATH}api/${process.env.CUSTOMPATH}/product/${id}`;
-      const vm = this;
-      vm.status.loadingInfo = id;
-      this.$http.get(api).then((response) => {
-        console.log(response.data);
-        vm.product = response.data.product;
-        response.data.product.num = 1;
-        vm.status.loadingInfo = "";
-        $("#productModal").modal("show");
-      });
+    toProductInof(id) {
+      this.$router.push(`/product_info/${id}`);
     },
     addToCart(id, qty = 1) {
       const api = `${process.env.APIPATH}api/${process.env.CUSTOMPATH}/cart`;
@@ -303,6 +400,16 @@ export default {
           vm.$bus.$emit("message:push", response.data.message, "info");
         });
     },
+    sortByCategory(categroy) {
+      const vm = this;
+      vm.featureProduct = [];
+      vm.products.forEach((item) => {
+        if (item.category == categroy) {
+          vm.featureProduct.push(item);
+        }
+      });
+      // console.log(this.featureProduct);
+    },
     getCart() {
       const api = `${process.env.APIPATH}api/${process.env.CUSTOMPATH}/cart`;
       const vm = this;
@@ -321,8 +428,8 @@ export default {
           vm.products = vm.result;
         }
       });
-      if(vm.result.length == 0){
-          vm.$bus.$emit("message:push", "找不到該商品", "danger");
+      if (vm.result.length == 0) {
+        vm.$bus.$emit("message:push", "找不到該商品", "danger");
       }
     },
   },
@@ -338,7 +445,6 @@ export default {
   components: {
     Pagination,
     Alert,
-    OnSale,
   },
 };
 </script>

@@ -63,7 +63,7 @@ export default new Router({
           component: ShoppingCart
         },
         {
-          path: 'product_info',
+          path: 'product_info/:productId',
           name: 'ProductInfo',
           component: ProductInfo
         },
